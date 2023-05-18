@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     picture = models.TextField(default='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png')
-    weight = models.IntegerField(null=False, blank=False)
-    height = models.IntegerField(null=False, blank=False)
+    weight = models.IntegerField(null=True, blank=True)
+    height = models.IntegerField(null=True, blank=True)
     def __str__(self):
         return self.username
 
