@@ -1,0 +1,3 @@
+CREATE DATABASE dayjot;
+CREATE USER dayjotuser WITH PASSWORD 'dayjot';
+GRANT ALL PRIVILEGES ON DATABASE dayjot TO dayjotuser;
