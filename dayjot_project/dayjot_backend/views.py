@@ -1,10 +1,14 @@
+import jwt, datetime
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
-from django.contrib.auth import get_user_model, logout
-
-from .models import Entry, Water, Food, Exercise, Sleep, Weight
+from rest_framework.response import Response
+from rest_framework.exceptions import AuthenticationFailed, PermissionDenied
+from rest_framework.permissions import IsAuthenticated
+from django.http import Http404
+from django.contrib.auth import get_user_model
 User = get_user_model()
+from .models import Entry, Water, Food, Exercise, Sleep, Weight
 from .serializers import UserSerializer, EntrySerializer, WaterSerializer, FoodSerializer, ExerciseSerializer, SleepSerializer, WeightSerializer
 
 # User Views
