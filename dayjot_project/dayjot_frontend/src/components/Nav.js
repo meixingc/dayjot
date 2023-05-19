@@ -25,7 +25,7 @@ export default function Nav() {
                     <Link to ='/create' className='nav-item'> Create </Link>
                     <Link to ='/entries' className='nav-item'> Entries </Link>
                     <Link to ='/profile' className='nav-item'> Profile </Link>
-                    <Link to ='/' onClick={() => handleLogOut()} className='nav-item'> Log Out </Link>
+                    <Link to ='/' className='nav-item' onClick={() => handleLogOut()}> Log Out </Link>
                 </div>
             </div>
         )
