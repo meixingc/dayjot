@@ -1,0 +1,17 @@
+.Nav {
+    background-color: #272727;
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-right {
+    display: flex;
+}
+
+.nav-logo {
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
