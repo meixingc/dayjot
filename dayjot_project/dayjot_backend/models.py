@@ -11,7 +11,7 @@ class User(AbstractUser):
 class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(null=False, blank=False)
-    diary = models.TextField()
+    diary = models.TextField(blank=True)
     class Meta:
         unique_together = ('user', 'date')
     def __str__(self):
