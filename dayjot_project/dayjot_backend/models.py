@@ -12,8 +12,10 @@ class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(null=False, blank=False)
     diary = models.TextField()
+    class Meta:
+        unique_together = ('user', 'date')
     def __str__(self):
-        return str(self.date)
+        return str(self.user) + ' ' + str(self.date)
 
 class Water(models.Model):
     entry = models.ForeignKey(Entry, on_delete=models.CASCADE)
