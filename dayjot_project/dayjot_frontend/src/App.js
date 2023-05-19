@@ -8,7 +8,6 @@ import Client from './services/api'
 
 import Nav from './components/Nav'
 import Main from './components/Main'
-import Footer from './components/Footer'
 
 export default function App() {
     // States
@@ -112,7 +111,6 @@ export default function App() {
                     <Main />
                 </DataContext.Provider>
             </UserContext.Provider>
-            <Footer />
         </div>
     )
 }
