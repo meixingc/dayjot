@@ -36,70 +36,61 @@ export default function App() {
         getSession()
     }, [])
 
+    useEffect(() => {
+        if (user) {
+            console.log(user)
+        }
+        else {
+            console.log('No user data')
+        }
+    }, [user])
+
     // Get Initial Data
     useEffect(() => {
         if (user) {
             const getEntries = async () => {
-                const response = await Client.get(`${BASE_URL}/entries?user=${user.id}`);
-                setEntries(response.data);
-                console.log('entries', response.data)
+                const response = await Client.get(`${BASE_URL}/entries`)
+                const results = await response.data.filter(entry => entry.user === user.id)
+                setEntries(results)
+                console.log('Entries', results)
             }
             getEntries()
         }
     }, [loggedIn])
 
     useEffect(() => {
-        if (user) {
+        if (user && entries) {
             const getWaters = async () => {
-                const response = await Client.get(`${BASE_URL}/waters?entry__user=${user.id}`)
-                setWaters(response.data)
-                console.log('Waters', response.data)
+                const response = await Client.get(`${BASE_URL}/waters`)
+                const results = await response.data.filter(water => entries.some(entry => entry.id === water.entry && entry.user === user.id)) 
+                setWaters(results)
+                console.log('Waters', results) 
             }
             getWaters()
         }
     }, [loggedIn])
 
     useEffect(() => {
-        if (user) {
+        if (user && entries) {
             const getFoods = async () => {
-                const response = await Client.get(`${BASE_URL}/foods?entry__user=${user.id}`)
-                setFoods(response.data)
-                console.log('Foods', response.data)
+                const response = await Client.get(`${BASE_URL}/foods`)
+                const results = await response.data.filter(food => entries.some(entry => entry.id === food.entry && entry.user === user.id)) 
+                setFoods(results)
+                console.log('Foods', results) 
             }
             getFoods()
         }
     }, [loggedIn])
 
     useEffect(() => {
-        if (user) {
+        if (user && entries) {
             const getExercises = async () => {
-                const response = await Client.get(`${BASE_URL}/exercises?entry__user=${user.id}`)
-                setExercises(response.data)
-                console.log('Exercises', response.data)
+                const response = await Client.get(`${BASE_URL}/exercises`)
+                const results = await response.data.filter(exercise => entries.some(entry => entry.id === exercise.entry && entry.user === user.id)) 
+                setExercises(results)
+                console.log('Exercises', results) 
             }
             getExercises()
-        }
-    }, [loggedIn])
-
-    useEffect(() => {
-        if (user) {
-            const getSleeps = async () => {
-                const response = await Client.get(`${BASE_URL}/sleeps?entry__user=${user.id}`)
-                setSleeps(response.data)
-                console.log('Sleeps', response.data)
-            }
-            getSleeps()
-        }
-    }, [loggedIn])
-
-    useEffect(() => {
-        if (user) {
-            const getWeights = async () => {
-                const response = await Client.get(`${BASE_URL}/weights?entry__user=${user.id}`)
-                setWeights(response.data)
-                console.log('Weights', response.data)
-            }
-            getWeights()
         }
     }, [loggedIn])
 
