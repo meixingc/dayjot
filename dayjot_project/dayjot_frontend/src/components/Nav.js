@@ -7,10 +7,10 @@ export default function Nav() {
     const navigate = useNavigate()
     const { loggedIn, handleLogOut } = useContext(UserContext)
 
-    if (loggedIn) {
+    if (!loggedIn) {
         return (
             <div className='Nav'>
-                <img className='nav-logo' src='/assets/full-trans-right-invert.png'/>
+                <img className='nav-logo' src='/assets/full-trans-right-invert.png' onClick={() => navigate('/')}/>
                 <div className='nav-right'>
                     <button className='nav-login' onClick={() => navigate('/login')}> Log In </button>
                 </div>
@@ -20,10 +20,9 @@ export default function Nav() {
     else {
         return (
             <div className='Nav'>
-                <img className='nav-logo' src='/assets/full-trans-right-invert.png'/>
+                <img className='nav-logo' src='/assets/full-trans-right-invert.png' onClick={() => navigate('/')}/>
                 <div className='nav-right'>
                     <Link to ='/create' className='nav-item'> Create </Link>
-                    <Link to ='/entries' className='nav-item'> Entries </Link>
                     <Link to ='/profile' className='nav-item'> Profile </Link>
                     <Link to ='/' className='nav-item' onClick={() => handleLogOut()}> Log Out </Link>
                 </div>
