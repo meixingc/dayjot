@@ -7,7 +7,9 @@ import { CheckSession } from '../../services/Auth'
 
 export default function Login() {
     const navigate = useNavigate()
+
     const { setLoggedIn, setUser } = useContext(UserContext)
+
     const [ formValues, setFormValues ] = useState({
         username: '',
         password: '',
@@ -45,14 +47,14 @@ export default function Login() {
         <div className='Login'>
             <form onSubmit={handleSubmit} className='login-form'>
                 <div className='login-input'>
-                    <label className='login-label'>Username:</label>
+                    <label className='login-label'> Username: </label>
                     <input type='text' name='username' value={formValues.username} onChange={handleChange} />
                 </div>
                 <div className='login-input'>
-                    <label className='login-label'>Password:</label>
+                    <label className='login-label'> Password: </label>
                     <input type='password' name='password' value={formValues.password} onChange={handleChange} />
                 </div>
-                <button type='submit' className='login-btn'>Login</button>
+                <button type='submit' className='login-btn'> Login </button>
             </form>
             <Link to='/register' className='no-account'> No Account? </Link>
         </div>
