@@ -4,7 +4,7 @@ from .models import User, Entry, Water, Food, Exercise, Sleep, Weight
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name', 'picture']
+        fields = ['id', 'picture', 'first_name', 'last_name', 'username', 'password', 'email']
         extra_kwargs = {'password': {'write_only': True, 'required': True}}
     def create(self, validated_data):
         password = validated_data.pop('password', None)
