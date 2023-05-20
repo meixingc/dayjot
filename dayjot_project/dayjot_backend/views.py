@@ -8,8 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.http import Http404
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from .models import Entry, Water, Food, Exercise, Sleep, Weight
-from .serializers import UserSerializer, EntrySerializer, WaterSerializer, FoodSerializer, ExerciseSerializer, SleepSerializer, WeightSerializer
+from .models import Entry, Water, Food, Exercise
+from .serializers import UserSerializer, EntrySerializer, WaterSerializer, FoodSerializer, ExerciseSerializer
 
 # User Views
 class RegisterView(APIView):
@@ -252,77 +252,3 @@ class ExerciseList(generics.ListCreateAPIView):
 class ExerciseDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
-
-# Sleep Views
-class SleepCreateView(APIView):
-    def post(self, request):
-        serializer = SleepSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.error, status=400)
-
-class SleepUpdateView(APIView):
-    def patch(self, request, sleep_id):
-        sleep = Sleep.objects.filter(id=sleep_id).first()
-        if sleep is None:
-            raise Http404
-        serializer = SleepSerializer(sleep, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=200)
-        else:
-            return Response(serializer.errors, status=400)
-
-class SleepDeleteView(APIView):
-    def delete(self, request, sleep_id):
-        sleep = Sleep.objects.filter(id=sleep_id).first()
-        if sleep is None:
-            raise Http404
-        sleep.delete()
-        return Response(status=204)
-
-class SleepList(generics.ListCreateAPIView):
-    queryset = Sleep.objects.all()
-    serializer_class = SleepSerializer
-
-class SleepDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Sleep.objects.all()
-    serializer_class = SleepSerializer
-
-#  Weight Views
-class WeightCreateView(APIView):
-    def post(self, request):
-        serializer = WeightSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.error, status=400)
-
-class WeightUpdateView(APIView):
-    def patch(self, request, weight_id):
-        weight = Weight.objects.filter(id=weight_id).first()
-        if weight is None:
-            raise Http404
-        serializer = WeightSerializer(weight, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=200)
-        else:
-            return Response(serializer.errors, status=400)
-
-class WeightDeleteView(APIView):
-    def delete(self, request, weight_id):
-        weight = Weight.objects.filter(id=weight_id).first()
-        if weight is None:
-            raise Http404
-        weight.delete()
-        return Response(status=204)
-
-class WeightList(generics.ListCreateAPIView):
-    queryset = Weight.objects.all()
-    serializer_class = WeightSerializer
-
-class WeightDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Weight.objects.all()
-    serializer_class = WeightSerializer

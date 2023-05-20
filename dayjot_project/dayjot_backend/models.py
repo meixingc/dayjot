@@ -9,6 +9,8 @@ class User(AbstractUser):
 class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(null=False, blank=False)
+    sleep = models.IntegerField(null=True, blank=True)
+    weight = models.IntegerField(null=True, blank=True)
     diary = models.TextField(blank=True)
     class Meta:
         unique_together = ('user', 'date')
@@ -35,17 +37,5 @@ class Exercise(models.Model):
     duration = models.IntegerField(null=False, blank=False)
     calories = models.IntegerField(null=True, blank=True)
     links = models.CharField(max_length=1000, null=True, blank=True)
-    def __str__(self):
-        return str(self.entry.user) + ' ' + str(self.entry.date)
-
-class Sleep(models.Model):
-    entry = models.ForeignKey(Entry, on_delete=models.CASCADE)
-    duration = models.IntegerField(null=False, blank=False)
-    def __str__(self):
-        return str(self.entry.user) + ' ' + str(self.entry.date)
-
-class Weight(models.Model):
-    entry = models.ForeignKey(Entry, on_delete=models.CASCADE)
-    weight = models.IntegerField(null=False, blank=False)
     def __str__(self):
         return str(self.entry.user) + ' ' + str(self.entry.date)

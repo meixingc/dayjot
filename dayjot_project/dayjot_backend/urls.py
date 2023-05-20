@@ -34,16 +34,4 @@ urlpatterns = [
     path('exercise/delete/<int:exercise_id>', views.ExerciseDeleteView.as_view()),
     path('exercises', views.ExerciseList.as_view()),
     path('exercises/<int:pk>', views.ExerciseDetail.as_view()),
-    # sleep
-    path('sleep/create', views.SleepCreateView.as_view()),
-    path('sleep/update/<int:sleep_id>', views.SleepUpdateView.as_view()),
-    path('sleep/delete/<int:sleep_id>', views.SleepDeleteView.as_view()),
-    path('sleeps', views.SleepList.as_view()),
-    path('sleeps/<int:pk>', views.SleepDetail.as_view()),
-    # weight
-    path('weight/create', views.WeightCreateView.as_view()),
-    path('weight/update/<int:weight_id>', views.WeightUpdateView.as_view()),
-    path('weight/delete/<int:weight_id>', views.WeightDeleteView.as_view()),
-    path('weights', views.WeightList.as_view()),
-    path('weights/<int:pk>', views.WeightDetail.as_view()),
 ]
