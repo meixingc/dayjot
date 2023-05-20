@@ -22,7 +22,7 @@ export default function Nav() {
             <div className='Nav'>
                 <img className='nav-logo' src='/assets/full-trans-right-invert.png' onClick={() => navigate('/')}/>
                 <div className='nav-right'>
-                    <Link to ='/create' className='nav-item'> Create </Link>
+                    <Link to ='/new' className='nav-item'> New Entry </Link>
                     <Link to ='/profile' className='nav-item'> Profile </Link>
                     <Link to ='/' className='nav-item' onClick={() => handleLogOut()}> Log Out </Link>
                 </div>
