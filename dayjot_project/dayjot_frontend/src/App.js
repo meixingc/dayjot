@@ -17,8 +17,6 @@ export default function App() {
     const [ waters, setWaters ] = useState([])
     const [ foods, setFoods ] = useState([])
     const [ exercises, setExercises ] = useState([])
-    const [ sleeps, setSleeps ] = useState([])
-    const [ weights, setWeights ] = useState([])
 
     // Auth
     const handleLogOut = () => {
@@ -56,10 +54,10 @@ export default function App() {
             }
             getEntries()
         }
-    }, [loggedIn])
+    }, [user])
 
     useEffect(() => {
-        if (user && entries) {
+        if (user) {
             const getWaters = async () => {
                 const response = await Client.get(`${BASE_URL}/waters`)
                 const results = await response.data.filter(water => entries.some(entry => entry.id === water.entry && entry.user === user.id)) 
@@ -68,10 +66,10 @@ export default function App() {
             }
             getWaters()
         }
-    }, [loggedIn])
+    }, [entries])
 
     useEffect(() => {
-        if (user && entries) {
+        if (user) {
             const getFoods = async () => {
                 const response = await Client.get(`${BASE_URL}/foods`)
                 const results = await response.data.filter(food => entries.some(entry => entry.id === food.entry && entry.user === user.id)) 
@@ -80,10 +78,10 @@ export default function App() {
             }
             getFoods()
         }
-    }, [loggedIn])
+    }, [entries])
 
     useEffect(() => {
-        if (user && entries) {
+        if (user) {
             const getExercises = async () => {
                 const response = await Client.get(`${BASE_URL}/exercises`)
                 const results = await response.data.filter(exercise => entries.some(entry => entry.id === exercise.entry && entry.user === user.id)) 
@@ -92,13 +90,13 @@ export default function App() {
             }
             getExercises()
         }
-    }, [loggedIn])
+    }, [entries])
 
     return (
         <div className='App'>
             <UserContext.Provider value={{ user, setUser, loggedIn, setLoggedIn, handleLogOut }}>
                 <Nav />
-                <DataContext.Provider value={{ entries, waters, foods, exercises, sleeps, weights}}>
+                <DataContext.Provider value={{ entries, waters, foods, exercises }}>
                     <Main />
                 </DataContext.Provider>
             </UserContext.Provider>
